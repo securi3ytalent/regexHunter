@@ -1,5 +1,25 @@
 #!/bin/bash
 
+
+
+cat << "EOF"
+____  _____ _____ ________  _ _     _     _      _____  _____ ____ 
+/  __\/  __//  __//  __/\  \/// \ /|/ \ /\/ \  /|/__ __\/  __//  __\
+|  \/||  \  | |  _|  \   \  / | |_||| | ||| |\ ||  / \  |  \  |  \/|
+|    /|  /_ | |_//|  /_  /  \ | | ||| \_/|| | \||  | |  |  /_ |    /
+\_/\_\\____\\____\\____\/__/\\\_/ \|\____/\_/  \|  \_/  \____\\_/\_\
+
+EOF
+
+# Text color using ANSI escape codes
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+# Display other information with color
+echo -e "${YELLOW}Author: @SecurityTalent${NC}"
+echo -e "${YELLOW}join_us: https://t.me/Securi3yTalent${NC}"
+
+
 # Function to display usage message
 display_usage() {
     echo "Usage: $0 <directory_path> <input_file1> [<input_file2> ...]"

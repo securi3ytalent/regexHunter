@@ -1,6 +1,7 @@
 import fetch from 'node-fetch';
 import fs from 'fs';
 
+
 // Set environment variable to bypass SSL certificate verification
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 
