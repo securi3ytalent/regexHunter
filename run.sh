@@ -31,7 +31,7 @@ echo " "
 display_usage() {
 
     echo "Usage: $0 <input_file1> [<input_file2> ...] ** Fast need to sorting url's"
-    echo "Usage: $0 [-h] [-t] [-s]      example:  run.sh -t run.sh -s "
+    echo "Usage: $0 [-h] [-t] [-s]      example:  run.sh -t | run.sh -s "
 
     echo " "
     echo "Options:"
