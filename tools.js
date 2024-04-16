@@ -1,7 +1,6 @@
 import fetch from 'node-fetch';
 import fs from 'fs';
 
-
 // Set environment variable to bypass SSL certificate verification
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 
@@ -162,6 +161,9 @@ const passwordPatterns = {
 
 const denyList = ["AIDAAAAAAAAAAAAAAAAA"];
 
+
+let resultString = ''; // Variable to accumulate findings
+
 // Function to check data against patterns
 function checkData(data, src, regexes, fromEncoded = false, parentUrl, parentOrigin) {
     const findings = [];
@@ -183,64 +185,83 @@ function checkData(data, src, regexes, fromEncoded = false, parentUrl, parentOri
             };
             findings.push(finding);
             foundMatches.add(match); // Add match to the set of found matches
+            // Append the finding to resultString
+            resultString += JSON.stringify(finding) + '\n\n\n\n'; // Insert two line breaks
         }
     }
     return findings;
 }
 
 // Function to fetch website content and check for sensitive data
-function fetchWebsiteContent(url, fromEncoded = false) {
+async function fetchWebsiteContent(url, fromEncoded = false) {
     const finalUrl = fromEncoded ? decodeURIComponent(url) : url;
-    fetch(finalUrl)
-        .then(response => {
-            if (!response.ok) {
-                if (response.status === 404) {
-                    throw new Error(`Error fetching web page content: ${url} returned a 404 (Not Found) error`);
-                } else {
-                    throw new Error(`Error fetching web page content: ${response.status} ${response.statusText}`);
-                }
+    try {
+        const response = await fetch(finalUrl);
+        if (!response.ok) {
+            if (response.status === 404) {
+                throw new Error(`Error fetching web page content: ${url} returned a 404 (Not Found) error`);
+            } else {
+                throw new Error(`Error fetching web page content: ${response.status} ${response.statusText}`);
             }
-            return response.text();
-        })
-        .then(html => {
-            // Check for sensitive data in the fetched HTML
-            const specificsFindings = checkData(html, url, specifics, fromEncoded);
-            const genericsFindings = checkData(html, url, generics, fromEncoded);
-            const awsFindings = checkData(html, url, aws, fromEncoded);
-            const passwordFindings = checkData(html, url, passwordPatterns, fromEncoded);
+        }
+        const html = await response.text();
+        // Check for sensitive data in the fetched HTML
+        const specificsFindings = checkData(html, url, specifics, fromEncoded);
+        const genericsFindings = checkData(html, url, generics, fromEncoded);
+        const awsFindings = checkData(html, url, aws, fromEncoded);
+        const passwordFindings = checkData(html, url, passwordPatterns, fromEncoded);
 
-            // Combine all findings
-            const allFindings = [...specificsFindings, ...genericsFindings, ...awsFindings, ...passwordFindings];
+        // Combine all findings
+        const allFindings = [...specificsFindings, ...genericsFindings, ...awsFindings, ...passwordFindings];
 
-            // Show results if sensitive data found
-            if (allFindings.length > 0) {
-                console.log("Sensitive data found:", allFindings);
-            }
-        })
-        .catch(error => console.error(error.message));
+        // Show results if sensitive data found
+        if (allFindings.length > 0) {
+            console.log("Sensitive data found:", allFindings);
+        }
+    } catch (error) {
+        console.error(error.message);
+    }
 }
 
 // Function to read website URLs from file and process each URL
 function processWebsiteList(filename) {
-    // Read the website URLs from the file
-    fs.readFile(filename, 'utf8', (err, data) => {
-        if (err) {
-            console.error("Error reading file:", err);
-            return;
-        }
-
-        // Split the data into an array of URLs
-        const urls = data.split('\n');
-
-        // Process each URL
-        urls.forEach(url => {
-            if (url.trim() !== '') {
-                fetchWebsiteContent(url.trim());
+    return new Promise((resolve, reject) => {
+        // Read the website URLs from the file
+        fs.readFile(filename, 'utf8', (err, data) => {
+            if (err) {
+                reject("Error reading file: " + err.message);
+                return;
             }
+
+            // Split the data into an array of URLs
+            const urls = data.split('\n');
+
+            // Process each URL
+            const promises = urls.map(async (url) => {
+                if (url.trim() !== '') {
+                    await fetchWebsiteContent(url.trim());
+                }
+            });
+
+            // Resolve the promise after processing all URLs
+            Promise.all(promises)
+                .then(() => resolve())
+                .catch((error) => reject(error));
         });
     });
 }
 
 // Start by reading the filename containing website URLs from user input
 const filename = 'domainlist.txt'; // Assuming the filename is fixed
-processWebsiteList(filename);
+processWebsiteList(filename)
+    .then(() => {
+        // Write findings to result.txt after processing all URLs
+        fs.writeFile('result.txt', resultString, 'utf8', (err) => {
+            if (err) {
+                console.error("Error writing result file:", err);
+                return;
+            }
+            console.log('Results saved to result.txt');
+        });
+    })
+    .catch((error) => console.error(error));
