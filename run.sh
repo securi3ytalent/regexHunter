@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 cat << "EOF"
 ____  _____ _____ ________  _ _     _     _      _____  _____ ____ 
 /  __\/  __//  __//  __/\  \/// \ /|/ \ /\/ \  /|/__ __\/  __//  __\
@@ -16,15 +17,24 @@ NC='\033[0m' # No Color
 # Display other information with color
 echo -e "${YELLOW}Author: @SecurityTalent${NC}"
 echo -e "${YELLOW}join_us: https://t.me/Securi3yTalent${NC}"
+echo " "
+
+
+
 
 # Function to display usage message
 display_usage() {
-    echo "Usage: $0 [-h] [-t] [-s] <directory_path> <input_file1> [<input_file2> ...]"
+
+    echo "Usage: $0 <input_file1> [<input_file2> ...] ** Fast need to sorting url's"
+    echo "Usage: $0 [-h] [-t] [-s]      example:  run.sh -t run.sh -s "
+
+    echo " "
     echo "Options:"
     echo "  -h, --help       Display this help message"
     echo "  -t               Identify the technology used by websites"
     echo "  -s               Find the endpoint sensitive data"
 }
+
 
 # Check if the script was called with the -h argument
 if [[ "$1" == "-h" || "$1" == "--help" ]]; then
@@ -79,6 +89,23 @@ if [[ "$1" == "-s" ]]; then
     exit 0
 fi
 
-# If no arguments provided or an invalid option is used, display usage message
-display_usage
-exit 1
+# Parent directory path
+parent_directory="../"
+
+# If no input file names are provided, select all .txt files in the parent directory
+if [ "$#" -eq 0 ]; then
+    input_files=("$parent_directory"*.txt)
+else
+    input_files=("$@")
+fi
+
+# Extract only the URLs and remove lines containing the specified pattern
+extract_urls() {
+    grep -h -Eo 'https?://[^[:space:]]+' "$@" | grep -v '\[linkfinder\] - \[' | sort | uniq > "domainlist.txt"
+}
+
+# Iterate through input files in the parent directory and call extract_urls function for each file
+for input_file in "${input_files[@]}"; do
+    extract_urls "$parent_directory$input_file"
+    echo "URLs extracted from $input_file and saved to domainlist.txt"
+done
