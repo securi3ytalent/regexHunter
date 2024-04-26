@@ -56,9 +56,9 @@ Usage: ./run.sh [-h] [-t] [-s] [-i]      example:  run.sh -t | run.sh -s | run.s
 
 Options:
   -h, --help       Display this help message
-  -t               Identify the technology used by websites
-  -s               Find the endpoint sensitive data
-  -i               Convert domains to IP addresses and save to file
+  -t               Identify the web technology
+  -s               Find the endpoint sensitive data and API
+  -i               Convert domains to IP addresses
 
 
 
