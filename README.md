@@ -5,6 +5,10 @@ regex Hunter- Fast website endpoint sensitive data scraper
 
 The tool in question was created in javascript (node js), python and shell scripting and its main objective is to search for sensitive data and API keys in JavaScript files and HTML pages.
 
+## Screenshots
+
+![App Screenshot](https://github.com/securi3ytalent/regexHunter/blob/main/assets/regex%20hunter%20tools%20screenshots.png?raw=true)
+
 
 ## File Tracture
 
@@ -95,7 +99,9 @@ Convert domains to IP addresses
 ./run.sh -i
 ```
 
-
+## License
+regexHunter is released under MIT license. See [LICENSE](https://raw.githubusercontent.com/securi3ytalent/regexHunter/main/assets/LICENSE.txt).
 
 ## Buy me a coffee?
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://buymeacoffee.com/securitytalent)
+
