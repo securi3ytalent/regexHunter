@@ -3,6 +3,7 @@
 
 regex Hunter- Fast website endpoint sensitive data scraper
 
+The tool in question was created in javascript (node js), python and shell scripting and its main objective is to search for sensitive data and API keys in JavaScript files and HTML pages.
 
 ## Screenshots
 
