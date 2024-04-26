@@ -4,6 +4,11 @@
 regex Hunter- Fast website endpoint sensitive data scraper
 
 
+## Screenshots
+
+![App Screenshot](https://github.com/securi3ytalent/regexHunter/blob/main/assets/regex%20hunter%20tools%20screenshots.png?raw=true)
+
+
 ## File Tracture
 
 One Directory after there must be a list of website file need.
@@ -49,11 +54,16 @@ sorting the url's
 ```bash
 ./run.sh < gospider_list_file  >
 ```
+Find the endpoint sensitive data and API
+```bash
+./run.sh -s
+```
 Identify the technology used by websites
 ```bash
 ./run.sh -t
 ```
-Find the endpoint sensitive data
+Convert domains to IP addresses
 ```bash
-./run.sh -s
+./run.sh -i
 ```
+
