@@ -5,6 +5,9 @@ regex Hunter- Fast website endpoint sensitive data scraper
 
 The tool in question was created in javascript (node js), python and shell scripting and its main objective is to search for sensitive data and API keys in JavaScript files and HTML pages.
 
+## Showcases
+
+[<img src="https://github.com/securi3ytalent/regexHunter/blob/main/assets/securi3ytalent.gif" width="50%">](https://youtu.be/coV58aqkgiw "Now in Android: 55")
 
 ## File Tracture
 
@@ -56,9 +59,9 @@ Usage: ./run.sh [-h] [-t] [-s] [-i]      example:  run.sh -t | run.sh -s | run.s
 
 Options:
   -h, --help       Display this help message
-  -t               Identify the web technology
-  -s               Find the endpoint sensitive data and API
-  -i               Convert domains to IP addresses
+  -t               Identify the technology used by websites
+  -s               Find the endpoint sensitive data
+  -i               Convert domains to IP addresses and save to file
 
 
 
