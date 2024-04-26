@@ -38,7 +38,36 @@ One Directory after there must be a list of website file need.
 
 
 
-## Deployment
+## Usage
+
+```bash
+ (                       )                          
+ )\ )                 ( /(               )          
+(()/((  (    (    )   )\())  (        ( /(  (  (    
+ /(_))\))(  ))\( /(  ((_)\  ))\  (    )\())))\ )(   
+(_))((_))\ /((_)\())  _((_)/((_) )\ )(_))//((_|()\  
+| _ \(()(_|_))((_)\  | || (_))( _(_/(| |_(_))  ((_) 
+|   / _` |/ -_) \ /  | __ | || | ' \))  _/ -_)| '_| 
+|_|_\__, |\___/_\_\  |_||_|\_,_|_||_| \__\___||_|   
+    |___/                                           
+
+
+Author: @SecurityTalent
+join_us: https://t.me/Securi3yTalent
+ 
+Usage: ./run.sh <input_file1> [<input_file2> ...] ** Fast need to sorting url's
+Usage: ./run.sh [-h] [-t] [-s] [-i]      example:  run.sh -t | run.sh -s | run.sh -i
+
+Options:
+  -h, --help       Display this help message
+  -t               Identify the technology used by websites
+  -s               Find the endpoint sensitive data
+  -i               Convert domains to IP addresses and save to file
+
+
+
+```
+
 
 Fast need clone the repo
 ```bash
@@ -61,7 +90,7 @@ Find the endpoint sensitive data and API
 ```bash
 ./run.sh -s
 ```
-Identify the technology used by websites
+Identify the technology
 ```bash
 ./run.sh -t
 ```
