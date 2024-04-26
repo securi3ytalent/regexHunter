@@ -38,22 +38,22 @@ git clone https://github.com/securi3ytalent/regexHunter.git
 ```
 
 ```bash
-  cd regexHunter
+cd regexHunter
 ```
 Dependency install
 ```bash
-  npm i
+npm i
 ```
 
 sorting the url's
 ```bash
-  ./run.sh < gospider_list_file  >
+./run.sh < gospider_list_file  >
 ```
 Identify the technology used by websites
 ```bash
-  ./run.sh -t
+./run.sh -t
 ```
 Find the endpoint sensitive data
 ```bash
-  ./run.sh -s
+./run.sh -s
 ```
