@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 cat << "EOF"
  (                       )                          
  )\ )                 ( /(               )          
@@ -24,10 +23,9 @@ echo -e "${YELLOW}Author: @SecurityTalent${NC}"
 echo -e "${YELLOW}join_us: https://t.me/Securi3yTalent${NC}"
 echo " "
 
-
 # Function to display usage message
 display_usage() {
-    echo "Usage: $0 <input_file1> [<input_file2> ...] ** Fast need to sorting url's"
+    echo "Usage: $0 <inputFilePath> <input_file1> [<input_file2> ...] ** Fast need to sorting url's"
     echo "Usage: $0 [-h] [-t] [-s] [-i]      example:  run.sh -t | run.sh -s | run.sh -i"
     echo ""
     echo "Options:"
@@ -134,14 +132,10 @@ END
     exit 0
 fi
 
-# Parent directory path
-parent_directory="../"
-
-# If no input file names are provided, select all .txt files in the parent directory
+# If no input file names are provided, show usage message
 if [ "$#" -eq 0 ]; then
-    input_files=("$parent_directory"*.txt)
-else
-    input_files=("$@")
+    display_usage
+    exit 1
 fi
 
 # Extract only the URLs and remove lines containing the specified pattern
@@ -149,8 +143,7 @@ extract_urls() {
     grep -h -Eo 'https?://[^[:space:]]+' "$@" | grep -v '\[linkfinder\] - \[' | sort | uniq > "domainlist.txt"
 }
 
-# Iterate through input files in the parent directory and call extract_urls function for each file
-for input_file in "${input_files[@]}"; do
-    extract_urls "$parent_directory$input_file"
-    echo "URLs extracted from $input_file and saved to domainlist.txt"
-done
+# Call the extract_urls function for each input file
+extract_urls "$@"
+
+echo "URLs extracted and saved to domainlist.txt"

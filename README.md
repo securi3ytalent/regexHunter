@@ -54,7 +54,7 @@ One Directory after there must be a list of website file need.
 Author: @SecurityTalent
 join_us: https://t.me/Securi3yTalent
  
-Usage: ./run.sh <input_file1> [<input_file2> ...] ** Fast need to sorting url's
+Usage: ./run.sh <inputFilePath> <input_file1> [<input_file2> ...] ** Fast need to sorting url's
 Usage: ./run.sh [-h] [-t] [-s] [-i]      example:  run.sh -t | run.sh -s | run.sh -i
 
 Options:
@@ -83,7 +83,7 @@ npm i
 
 sorting the url's
 ```bash
-./run.sh < gospider_list_file  >
+./run.sh <inputFilePath/gospiderOutputfile.txt>
 ```
 Find the endpoint sensitive data and API
 ```bash
