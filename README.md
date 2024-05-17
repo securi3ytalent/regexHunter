@@ -80,6 +80,9 @@ Dependency install
 ```bash
 npm i
 ```
+```bash
+pip install builtwith
+```
 
 sorting the url's
 ```bash
