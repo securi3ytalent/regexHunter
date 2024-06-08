@@ -14,13 +14,13 @@ The tool in question was created in javascript (node js), python and shell scrip
 One Directory after there must be a list of website file need.
 
 ```bash
-  ├── gospider_domain_list
-└── regexHunter(tols)
-    ├── package.json
-    ├── package-lock.json
-    ├── run.sh
-    └── tools.js
-
+├── assets
+│   ├── LICENSE.txt
+├── package.json
+├── package-lock.json
+├── README.md
+├── run.sh
+└── tools.js
 ```
 
 
