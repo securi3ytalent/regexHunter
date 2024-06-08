@@ -11,7 +11,7 @@ The tool in question was created in javascript (node js), python and shell scrip
 
 ## File Tracture
 
-One Directory after there must be a list of website file need.
+One Directory after there must be a list of website file need. ( That time no required )
 
 ```bash
 ├── assets
