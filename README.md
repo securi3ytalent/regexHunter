@@ -81,8 +81,6 @@ cd regexHunter
 Dependency install
 ```bash
 npm i
-```
-```bash
 pip install builtwith
 apt install jq
 ```
