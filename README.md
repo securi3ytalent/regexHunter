@@ -100,6 +100,11 @@ Convert domains to IP addresses
 ```bash
 ./run.sh -i
 ```
+One liner beautifier command
+```bash
+cat output.txt | jq -r 'select(.src != "" and .match != "" and .key != "") | "Source: \(.src)\nMatch: \(.match)\nKey: \(.key)\n"'
+
+```
 
 ## License
 regexHunter is released under MIT license. See [LICENSE](https://raw.githubusercontent.com/securi3ytalent/regexHunter/main/assets/LICENSE.txt).
