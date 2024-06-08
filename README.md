@@ -34,6 +34,8 @@ One Directory after there must be a list of website file need.
 - node js
 - python
 - [GoSpider Tools](https://github.com/jaeles-project/gospider)
+- OR
+- [katana Tools](https://github.com/projectdiscovery/katana)
 
 
 

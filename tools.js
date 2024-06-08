@@ -158,7 +158,7 @@ const passwordPatterns = {
     // Add more patterns as needed
 
 };
-s
+
 const denyList = ["AIDAAAAAAAAAAAAAAAAA"];
 
 
