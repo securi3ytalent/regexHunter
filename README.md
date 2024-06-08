@@ -73,9 +73,6 @@ Options:
 Fast need clone the repo
 ```bash
 git clone https://github.com/securi3ytalent/regexHunter.git
-```
-
-```bash
 cd regexHunter
 ```
 Dependency install
