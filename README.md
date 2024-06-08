@@ -84,6 +84,7 @@ npm i
 ```
 ```bash
 pip install builtwith
+apt install jq
 ```
 
 sorting the url's
@@ -107,7 +108,7 @@ Convert domains to IP addresses
 ```
 One liner beautifier command
 ```bash
-cat output.txt | jq -r 'select(.src != "" and .match != "" and .key != "") | "Source: \(.src)\nMatch: \(.match)\nKey: \(.key)\n"'
+cat result.txt | jq -r 'select(.src != "" and .match != "" and .key != "") | "Source: \(.src)\nMatch: \(.match)\nKey: \(.key)\n"'
 
 ```
 
