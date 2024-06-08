@@ -89,6 +89,9 @@ pip install builtwith
 sorting the url's
 ```bash
 ./run.sh <inputFilePath/gospiderOutputfile.txt>
+
+example:
+./run.sh /root/Desktop/regexHunter/katanaOrGoSpiderList.txt
 ```
 Find the endpoint sensitive data and API
 ```bash
